@@ -1,0 +1,35 @@
+### Simplifed relationship between lag-1 correlation and turnover.
+
+Suppose portfolio weights $w_i$ is simply determined by the alpha/factor values $F_i$ where $F$ is a standardised alpha/factor score with mean = 0 and standard deviation = 1. The lag-1 correlation between $F^t$ and $F^{t-1}$ is $rho$
+
+Hence:
+
+$$
+w_i = \frac{F_i}{\sum^N_{i=1} |F_i|}
+$$
+
+such that $\sum^N_{i=1} |w_i| = 1$
+
+We are interested in the turnover of the porfolio $T$, i.e.
+
+$$
+\begin{aligned}
+T_{t} &= \frac{\sum^{N}_{i=1} |w^t_i - w^{t-1}_i|}{ \sum^N_{i=1} | w^{t }_i |} \\
+&= \sum^{N}_{i=1} |w^t_i - w^{t-1}_i| \\
+&= \frac{1}{\sum^{N}_{i=1} |F_i|}\sum^{N}_{i=1} |F^t_i - F^{t-1}_i| \\
+&= \frac{N}{N \Exp \left(|F_i|\right)} \Exp \left(|F^t_i - F^{t-1}_i|\right)
+\end{aligned}
+$$
+
+Since $F \sim \mathcal N(0,1)$ and $(F^t - F^{t-1}) \sim \mathcal N (0, 2-2\rho)$, we have 
+
+$$
+\Exp[|F|] = \sqrt{\frac{2}{\pi}}, \quad \Exp[|F^t - F^{t-1}|] = \sqrt{\frac{2}{\pi}} \cdot \sqrt{2 (1-\rho)}
+$$
+Hence
+$$
+\begin{aligned}
+T_{t} &= \frac{N}{N \Exp \left(|F_i|\right)} \Exp \left(|F^t_i - F^{t-1}_i|\right) \\
+&= \sqrt{2 (1-\rho)}
+\end{aligned}
+$$
